@@ -1,6 +1,7 @@
 package com.example.user;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class User {
 
@@ -23,7 +24,7 @@ public class User {
     }
 
     public Integer getId() {
-        return 1;
+        return new Random().nextInt(2);
     }
 
     public boolean hasNoEmail() {
