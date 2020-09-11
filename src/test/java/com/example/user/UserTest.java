@@ -1,12 +1,13 @@
 package com.example.user;
 
-import org.junit.jupiter.api.Assertions;
+import com.example.Unit;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Unit
 public class UserTest {
 
     @Test
