@@ -16,6 +16,7 @@ public class Persistency {
 
     public static void save(User user, Cart cart) {
         carts.put(user.getId(), cart);
+        System.out.println("Successfully saved cart");
     }
 
     public static Cart load(User user) {

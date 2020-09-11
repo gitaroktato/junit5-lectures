@@ -7,10 +7,18 @@ public class User {
 
     private final String firstName;
     private final String lastName;
+    private final int id;
     private String eMail;
     private boolean emailVerified = false;
 
     public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = new Random().nextInt(2);
+    }
+
+    public User(int id, String firstName, String lastName) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -24,7 +32,7 @@ public class User {
     }
 
     public Integer getId() {
-        return new Random().nextInt(2);
+        return id;
     }
 
     public boolean hasNoEmail() {

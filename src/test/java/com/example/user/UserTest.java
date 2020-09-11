@@ -29,9 +29,9 @@ public class UserTest {
     public void testIsEmailVerified() {
         var user = new User("No", "Name");
         assertAll("E-mail assertions",
-                () -> assertFalse(user.hasNoEmail(),
+                () -> assertTrue(user.hasNoEmail(),
                         "User has no email by default"),
-                () -> assertTrue(user.isEmailVerified(),
+                () -> assertFalse(user.isEmailVerified(),
                         "User's e-mail is not verified by default"));
     }
 

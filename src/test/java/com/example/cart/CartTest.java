@@ -6,13 +6,17 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CartTest {
 
     @Test
+    @Timeout(1)
+    @Disabled
     public void testProceedToCheckout() {
         var cart = new Cart();
         cart.add(new ListItem("1", "Book"));
         cart.proceedToCheckout();
+        // ?? Self-validating
     }
 
     @Test
@@ -24,16 +28,19 @@ public class CartTest {
     }
 
     @Test
+    @Order(1)
     public void testSave() {
-        var user = new User("John", "Smith");
+        var user = new User(1, "John", "Smith");
         var cart = new Cart();
         cart.add(new ListItem("3", "Tools"));
         Persistency.save(user, cart);
+        // ?? Self-validating
     }
 
     @Test
+    @Order(2)
     public void testLoad() {
-        var user = new User("John", "Smith");
+        var user = new User(1, "John", "Smith");
         var cart = Persistency.load(user);
         assertEquals(1, cart.getAll().size());
     }
