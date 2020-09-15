@@ -65,9 +65,23 @@ public class CartTest {
         verify(warehouse, never()).checkout(any());
     }
 
-    // Spying
-    // Static methods
-    // https://javadoc.io/static/org.mockito/mockito-core/3.5.10/org/mockito/Mockito.html#static_mocks
+    @Test
+    public void testSpyingCart(@Mock Cart mockedCart) {
+        var cart = new Cart();
+        var spy = spy(cart);
+        doNothing().when(spy).proceedToCheckout();
+        var book = new ListItem("1", "Book");
+        spy.add(book);
+        // Original
+        assertThrows(RuntimeException.class, cart::proceedToCheckout);
+        // Spy
+        assertDoesNotThrow(spy::proceedToCheckout);
+        assertEquals(1, spy.getAll().size());
+        assertEquals(1, cart.getAll().size());
+        // Mock
+        mockedCart.add(book);
+        assertEquals(0, mockedCart.getAll().size());
+    }
 
     @Test
     public void testAdd() {
