@@ -7,12 +7,21 @@ import java.util.List;
 public class Cart {
 
     private final List<ListItem> listItems = new LinkedList<>();
+    private final WarehouseService warehouseService;
+
+    public Cart(WarehouseService warehouseService) {
+        this.warehouseService = warehouseService;
+    }
+
+    public Cart() {
+        this.warehouseService = new WarehouseService();
+    }
 
     public void proceedToCheckout() {
         var allAvailable = listItems.stream()
-                .allMatch(WarehouseService::checkIfAvailable);
+                .allMatch(warehouseService::checkIfAvailable);
         if (allAvailable) {
-            // TODO implement me
+            warehouseService.checkout(listItems);
         }
     }
 
